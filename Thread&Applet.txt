@@ -1,0 +1,344 @@
+//Ascending Descending Thread
+class AscOrder extends Thread{
+    public void run(){
+        for(int i=1;i<=1000;i++){
+            System.out.println("Values Of i in Ascending Order"+i);
+        }
+    System.out.println("Exiting ascending order...");
+    }//run exit
+}
+class DescOrder extends Thread{
+    public void run(){
+        for(int j=1000;j>=1;j--){
+            System.out.println("Values Of j in Descending Order"+j);
+        }
+    System.out.println("Exiting descending order...");
+
+    }//run exit
+
+}
+class AscDesc{
+public static void main(String arg[]){
+
+Thread t1=new AscOrder();
+t1.start();
+Thread t2=new DescOrder();
+t2.start();
+System.out.println("Exiting Main...");
+}
+}
+
+//Prime/Non-prime Thread
+class Prime extends Thread{
+public void run(){
+    for(int i=2;i<=1000;i++){
+        int flag=1;
+        for(int j=2;j<=i/2;j++){
+            if(i%j==0){
+                 flag=0;
+                break;
+            }
+         }
+        if(flag==1)
+            System.out.println("Prime NO.="+i);
+    }
+    System.out.println("Exiting Prime...");
+}//run exit
+}
+class NonPrime extends Thread{
+public void run(){
+    for(int i=2;i<=1000;i++){
+        int flag=1;
+        for(int j=2;j<=i/2;j++){
+            if(i%j==0){
+                 flag=0;
+                break;
+            } 
+         }
+        if(flag==0)
+           System.out.println("NON Prime NO.="+i);
+    }
+    System.out.println("Exiting Non Prime...");
+}//run exit
+}
+class PrimeNon{
+public static void main(String arg[]){
+Thread t1=new Prime();
+Thread t2=new NonPrime();
+t1.start();
+t2.start();   
+System.out.println("Exiting Main...");
+}
+}
+
+//Setting priorities(Thread)
+/* Setting priority to threads */
+		class threadA extends Thread{
+		public void run() {
+		System.out.println("Start Thread A ....");
+		for(int i = 5; i >= 1; i--) {
+        try{
+        Thread.sleep(1000);
+		System.out.println("From Thread A: i = "+ i);
+        }catch(InterruptedException ae){
+        System.out.println(ae);
+        }		
+        }
+		System.out.println("... Exit Thread A");
+		}
+		}
+
+		class threadB extends Thread{
+		public void run() {
+		System.out.println("Start Thread B ....");
+		for(int j = 5; j >=1; j--) {
+		try{
+        Thread.sleep(1000);
+		System.out.println("From Thread B: j = "+ j);
+        }catch(InterruptedException ae){
+        System.out.println(ae);
+        }
+		}
+		System.out.println("... Exit Thread B");
+		}
+		}
+
+		class threadC extends Thread{
+		public void run() {
+		System.out.println("Start Thread C ....");
+		for(int k = 5; k>= 1; k--) {
+		try{
+        Thread.sleep(1000);
+		System.out.println("From Thread C: k = "+k);
+        }catch(InterruptedException ae){
+        System.out.println(ae);
+
+        }
+		}
+		System.out.println("... Exit Thread C");
+		}
+		}
+        class threadD extends Thread{
+        public void run(){
+            System.out.println("From D Thread...");
+            for(int p=5;p>=1;p--){
+                try{
+                Thread.sleep(1000);
+		        System.out.println("From Thread D: p = "+ p);
+                }catch(InterruptedException ae){
+                System.out.println(ae);
+
+                }
+        
+            }
+            
+            System.out.println("Exit.. D Thread..");
+        }  
+        }
+
+		class ThreadPriorityTest{
+		public static void main (String args[]) {
+		threadA t1 = new threadA();
+		threadB t2 = new threadB();
+		threadC t3 = new threadC();
+        threadD t4 = new threadD();
+        t1.setPriority(Thread.MIN_PRIORITY);
+        System.out.println(t1.getPriority());
+		t2.setPriority(t1.getPriority()+2);
+        System.out.println(t2.getPriority());
+		t3.setPriority(t2.getPriority() + 2);
+        System.out.println(t3.getPriority());
+		t4.setPriority(t3.getPriority()+2);
+        System.out.println(t4.getPriority());
+		t1.start(); t2.start(); t3.start();t4.start();
+		System.out.println("... End of executuion ");
+	}
+   }
+
+//Odd Even Thread
+class EvenThread extends Thread{
+    public void run(){
+        for(int i=0;i<1000;i++){
+            if(i%2==0){
+             try{
+                    Thread.sleep(500);
+                }catch(InterruptedException e){
+                    System.out.println(e);
+                }  
+           System.out.println("Value of i in EVEVN THREAD"+i);
+          }
+        }
+            System.out.println("EvenThread exit...");
+    }
+}
+class OddThread extends Thread{
+    public void run(){
+        for(int i=0;i<1000;i++){
+            if(i%2!=0){
+             try{
+                    Thread.sleep(500);
+                }catch(InterruptedException e){
+                    System.out.println(e);
+                }  
+           System.out.println("Value of i in ODD THREAD"+i);
+          }
+        }
+            System.out.println("OddThread exit...");
+    }
+}
+class OddEvenThread{
+public static void main(String arg[]){
+    EvenThread a=new EvenThread();
+    a.start();
+    OddThread b=new OddThread();
+    b.start();
+    System.out.println("Exiting Main...");
+}
+}
+
+//Using Runnable(Thread)
+class EvenThread implements Runnable{
+    public void run(){
+        for(int i=0;i<1000;i++){
+            if(i%2==0){
+             try{
+                    Thread.sleep(500);
+                }catch(InterruptedException e){
+                    System.out.println(e);
+                }  
+           System.out.println("Value of i in EVEVN THREAD"+i);
+          }
+        }
+            System.out.println("EvenThread exit...");
+    }
+}
+class OddThread implements Runnable{
+    public void run(){
+        for(int i=0;i<1000;i++){
+            if(i%2!=0){
+             try{
+                    Thread.sleep(500);
+                }catch(InterruptedException e){
+                    System.out.println(e);
+                }  
+           System.out.println("Value of i in ODD THREAD"+i);
+          }
+        }
+            System.out.println("OddThread exit...");
+    }
+}
+class OddEvenThread{
+public static void main(String arg[]){
+    EvenThread a=new EvenThread();
+    Thread t1= new Thread(a);
+    t1.start();
+    OddThread b=new OddThread();
+    Thread t2=new Thread(b);
+    t2.start();
+    System.out.println("Exiting Main...");
+}
+}
+
+//Applet
+
+//1.Write a GUI based program in Java that will have two buttons viz., RED and GREEN. If user clicks on the
+RED button the background of the GUI will be painted in red and if user clicks on the GREEN button the
+background of the GUI will be painted in green.
+
+<applet code ="Buttons"
+width=200
+height=200>
+</applet>
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+public class Buttons extends Applet implements ActionListener
+{
+Button b1,b2;
+
+public void init()
+{
+b1=new Button("RED");
+add(b1);
+b1.addActionListener(this);
+
+b2=new Button("GREEN");
+add(b2);
+b2.addActionListener(this);
+}
+
+public void actionPerformed(ActionEvent e1)
+{
+if(e1.getSource()==b1)
+
+{
+setBackground(Color.red);
+}
+
+if(e1.getSource()==b2)
+{
+setBackground(Color.green);
+}
+}
+
+}
+
+2. Design a Java applet that will display “Hello Applet” message in the applet window and set the
+background and foreground colour
+
+/*
+<applet code="MyApplet " width=200 height=200>
+</applet>
+*/
+import java.applet.*;
+import java.awt.Color;
+import java.awt.*;
+public class MyApplet extends Applet {
+public void init()
+{
+setBackground(Color.cyan);
+setForeground(Color.red);
+}
+public void paint(Graphics g) {
+
+g.drawString("Hello applet!", 50, 25);
+}
+}
+3. Write a program to show the lifecycle of an Applet.
+
+/*<applet code="AppletLifeCycle.class" width="350" height="150"> </applet>*/
+import java.applet.Applet;
+import java.awt.Graphics;
+import java.awt.*;
+public class AppletLifeCycle extends Applet
+{
+public void init()
+{
+setBackground(Color.CYAN);
+System.out.println("init() called");
+}
+public void start(){ System.out.println("Start() called"); }
+public void paint(Graphics g){ System.out.println("Paint(() called"); }
+public void stop() { System.out.println("Stop() Called"); }
+public void destroy() { System.out.println("Destroy)() Called"); }
+}
+
+4. Write an applet to draw the following shapes:
+a. Rectangle
+b. Square
+c. Circle.
+Import java.awt.*;
+import java.applet.Applet;
+public class MyGraphics extends Applet
+{
+public void paint (Graphics g)
+{
+
+// Rectangle
+g.drawRect(10,10,50,100);
+// Square
+g.drawRect(100,100,50,50);
+// Circle
+g.drawOval(150, 50, 90, 90);
+}
+}
